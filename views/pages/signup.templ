@@ -1,0 +1,17 @@
+package pages
+
+import (
+"github.com/adam-fraga/adhora/views/forms"
+)
+
+// Page containing forms dynamically generated from user status (logged in, logged out, etc.)
+
+var (
+Register = forms.Register
+)
+
+templ Signup() {
+<section>
+  @Register()
+</section>
+}

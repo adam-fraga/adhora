@@ -14,6 +14,9 @@ func main() {
 	router.HandleFunc("/", h.IndexHandler)
 	router.HandleFunc("/contact", h.ContactHandler)
 	router.HandleFunc("/about", h.AboutHandler)
+	router.HandleFunc("/services", h.ServicesHandler)
+	router.HandleFunc("/login", h.SigninHandler)
+	router.HandleFunc("/register", h.SignupHandler)
 
 	router.ListenAndServe(":3000")
 }

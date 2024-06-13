@@ -42,3 +42,39 @@ func AboutHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	t.Handler(layout).ServeHTTP(w, r)
 }
+
+func ServicesHandler(w http.ResponseWriter, r *http.Request) {
+
+	homeData := make(map[string]interface{})
+	homeData["Title"] = "Home"
+
+	layout := layouts.Base(pages.Services())
+
+	w.Header().Set("Content-Type", "text/html")
+	w.WriteHeader(http.StatusOK)
+	t.Handler(layout).ServeHTTP(w, r)
+}
+
+func SigninHandler(w http.ResponseWriter, r *http.Request) {
+
+	homeData := make(map[string]interface{})
+	homeData["Title"] = "Home"
+
+	layout := layouts.Base(pages.Signin())
+
+	w.Header().Set("Content-Type", "text/html")
+	w.WriteHeader(http.StatusOK)
+	t.Handler(layout).ServeHTTP(w, r)
+}
+
+func SignupHandler(w http.ResponseWriter, r *http.Request) {
+
+	homeData := make(map[string]interface{})
+	homeData["Title"] = "Home"
+
+	layout := layouts.Base(pages.Signup())
+
+	w.Header().Set("Content-Type", "text/html")
+	w.WriteHeader(http.StatusOK)
+	t.Handler(layout).ServeHTTP(w, r)
+}
