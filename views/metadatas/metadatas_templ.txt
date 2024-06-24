@@ -1,1 +1,1 @@
-<head><title>Page Title</title><link rel=\"stylesheet\" type=\"text/css\" href=\"/static/css/styles.css\"><script src=\"/static/js/htmx.min.js\" defer></script><script src=\"/static/js/bundle.js\" defer></script></head>
+<head><title>Astel</title><link rel=\"stylesheet\" type=\"text/css\" href=\"/static/css/styles.css\"><link rel=\"stylesheet\" type=\"text/css\" href=\"/static/css/main.css\"><script src=\"/static/js/htmx.min.js\" defer></script><script src=\"/static/js/bundle.js\" defer></script></head>

@@ -1,28 +1,19 @@
 package layouts
 
-import (
-met "github.com/adam-fraga/adhora/views/metadatas"
-par "github.com/adam-fraga/adhora/views/partials"
-t "github.com/a-h/templ"
-)
+import t "github.com/a-h/templ"
 
-var (
-Head = met.Head
-Header = par.Header
-Footer = par.Footer
-)
 
-templ Base(Page t.Component) {
+templ Base(Page t.Component, Head t.Component, Header t.Component, Footer t.Component) {
 <!DOCTYPE html>
 <html>
-@Head()
-@Header()
+@Head
+@Header
 
 <body class="bg-gray-100 text-gray-900">
   @Page
 </body>
 
-@Footer()
+@Footer
 
 </html>
 }

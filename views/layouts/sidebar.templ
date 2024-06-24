@@ -1,0 +1,22 @@
+package layouts
+
+import (
+t "github.com/a-h/templ"
+)
+
+
+templ Sidebar(Page t.Component, Head t.Component, SideNavbar t.Component, Footer t.Component) {
+<!DOCTYPE html>
+<html>
+@Head
+
+<body class="bg-gray-100 text-gray-900">
+  <div class="flex min-h-screen">
+    @SideNavbar
+    @Page
+  </div>
+  @Footer
+</body>
+
+</html>
+}

@@ -1,80 +1,32 @@
 package handlers
 
 import (
-	t "github.com/a-h/templ"
-	layouts "github.com/adam-fraga/adhora/views/layouts"
-	pages "github.com/adam-fraga/adhora/views/pages"
+	"log"
 	"net/http"
+
+	loc "github.com/adam-fraga/adhora/localized"
+	layouts "github.com/adam-fraga/adhora/views/layouts"
+	"github.com/adam-fraga/adhora/views/metadatas"
+	"github.com/adam-fraga/adhora/views/pages"
+	"github.com/adam-fraga/adhora/views/partials"
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
+	var homeData = loc.GetHomePageDataEn()
 
-	homeData := make(map[string]interface{})
-	homeData["Title"] = "Home"
+	navlinks, ok := homeData["nav_links"].([]string)
+	if !ok {
+		log.Fatal("Error getting nav links")
+	}
 
-	layout := layouts.Base(pages.Index())
-
-	w.Header().Set("Content-Type", "text/html")
-	w.WriteHeader(http.StatusOK)
-	t.Handler(layout).ServeHTTP(w, r)
-}
-
-func ContactHandler(w http.ResponseWriter, r *http.Request) {
-
-	homeData := make(map[string]interface{})
-	homeData["Title"] = "Home"
-
-	layout := layouts.Base(pages.Contact())
+	layout := layouts.Base(
+		pages.Index(),
+		metadatas.Head(),
+		partials.Header(navlinks),
+		partials.Footer(),
+	)
 
 	w.Header().Set("Content-Type", "text/html")
 	w.WriteHeader(http.StatusOK)
-	t.Handler(layout).ServeHTTP(w, r)
-}
-
-func AboutHandler(w http.ResponseWriter, r *http.Request) {
-
-	homeData := make(map[string]interface{})
-	homeData["Title"] = "Home"
-
-	layout := layouts.Base(pages.About())
-
-	w.Header().Set("Content-Type", "text/html")
-	w.WriteHeader(http.StatusOK)
-	t.Handler(layout).ServeHTTP(w, r)
-}
-
-func ServicesHandler(w http.ResponseWriter, r *http.Request) {
-
-	homeData := make(map[string]interface{})
-	homeData["Title"] = "Home"
-
-	layout := layouts.Base(pages.Services())
-
-	w.Header().Set("Content-Type", "text/html")
-	w.WriteHeader(http.StatusOK)
-	t.Handler(layout).ServeHTTP(w, r)
-}
-
-func SigninHandler(w http.ResponseWriter, r *http.Request) {
-
-	homeData := make(map[string]interface{})
-	homeData["Title"] = "Home"
-
-	layout := layouts.Base(pages.Signin())
-
-	w.Header().Set("Content-Type", "text/html")
-	w.WriteHeader(http.StatusOK)
-	t.Handler(layout).ServeHTTP(w, r)
-}
-
-func SignupHandler(w http.ResponseWriter, r *http.Request) {
-
-	homeData := make(map[string]interface{})
-	homeData["Title"] = "Home"
-
-	layout := layouts.Base(pages.Signup())
-
-	w.Header().Set("Content-Type", "text/html")
-	w.WriteHeader(http.StatusOK)
-	t.Handler(layout).ServeHTTP(w, r)
+	layout.Render(r.Context(), w)
 }
